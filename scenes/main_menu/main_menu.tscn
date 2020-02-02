@@ -704,13 +704,23 @@ spanish_button = NodePath("../option_panel/languages/spanish")
 visible = false
 position = Vector2( 628.143, 269.267 )
 scale = Vector2( 2, 2 )
+facing = 0
+animation = 0
+dialog = ""
 
 [node name="narrator" parent="outworld" instance=ExtResource( 10 )]
+facing = 0
+animation = 0
 dialog = "BOY_KNOCK"
+sprite_front = null
+sprite_back = null
+sprite_left = null
+portrait = null
 
 [node name="hearthsmith" parent="outworld" instance=ExtResource( 12 )]
 position = Vector2( 923.935, 677.217 )
 dialog = "COME_IN"
+sprite_back = null
 
 [node name="sfx" type="AudioStreamPlayer" parent="outworld"]
 stream = ExtResource( 11 )
@@ -749,6 +759,9 @@ custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
 text = "PLAY"
 flat = true
 script = ExtResource( 2 )
+unfocus_icon = null
+focus_icon = null
+disabled_icon = null
 
 [node name="language" type="Button" parent="option_panel/buttons"]
 margin_left = 258.0
@@ -763,6 +776,9 @@ custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
 text = "LANGUAGE"
 flat = true
 script = ExtResource( 2 )
+unfocus_icon = null
+focus_icon = null
+disabled_icon = null
 
 [node name="credits" type="Button" parent="option_panel/buttons"]
 margin_left = 516.0
@@ -777,6 +793,9 @@ custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
 text = "CREDITS"
 flat = true
 script = ExtResource( 2 )
+unfocus_icon = null
+focus_icon = null
+disabled_icon = null
 
 [node name="languages" type="HBoxContainer" parent="option_panel"]
 visible = false
@@ -799,6 +818,9 @@ custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
 text = "ENGLISH"
 flat = true
 script = ExtResource( 2 )
+unfocus_icon = null
+focus_icon = null
+disabled_icon = null
 
 [node name="spanish" type="Button" parent="option_panel/languages"]
 margin_left = 103.0
@@ -813,6 +835,9 @@ custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
 text = "SPANISH"
 flat = true
 script = ExtResource( 2 )
+unfocus_icon = null
+focus_icon = null
+disabled_icon = null
 
 [node name="transition" type="ColorRect" parent="."]
 anchor_right = 1.0

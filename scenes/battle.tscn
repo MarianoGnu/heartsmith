@@ -21,6 +21,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="field" type="Panel" parent="."]
 anchor_left = 0.5
@@ -34,6 +37,18 @@ margin_bottom = -83.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="field"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+text = "SORRY"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="actions" type="HBoxContainer" parent="."]
 anchor_top = 1.0
