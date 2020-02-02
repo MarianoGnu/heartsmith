@@ -1,0 +1,891 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://ui/theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/controls/icon_button.gd" type="Script" id=2]
+[ext_resource path="res://ui/fonts/fipps-16.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=4]
+[ext_resource path="res://scenes/main_menu/scene_path.gd" type="Script" id=5]
+[ext_resource path="res://ui/fonts/coders_crux-40.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scenes/world/outworld/outworld.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/main_menu/Hidden Oasis.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scenes/characters/boy/boy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/characters/narrator/narrator.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/world/outworld/knock.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/characters/heartsmith/heartsmith.tscn" type="PackedScene" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="Theme" id=2]
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "setup"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("option_panel/buttons:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("anim/transition_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "setup", "transition_in" ),
+"times": PoolRealArray( 0, 2.4 )
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("anim/gui_anim")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "show" ),
+"times": PoolRealArray( 4 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("bgm:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("outworld:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "start_game"
+length = 3.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("anim/transition_anim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"clips": PoolStringArray( "transition_out" ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("anim/gui_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "hide" ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_game_started"
+} ]
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("anim/cutscene_anim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "intro" ),
+"times": PoolRealArray( 1.2 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "hide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../option_panel:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 126.0, 391.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../option_panel:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -93.0, -56.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../option_panel:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -127.0, -392.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../option_panel:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -19.0, -56.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../option_panel/languages:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../option_panel/buttons:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "setup"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../option_panel:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 391.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../option_panel:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -56.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../option_panel:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -392.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../option_panel:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -56.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../option_panel:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 391.0, 126.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../option_panel:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -56.0, -93.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../option_panel:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -392.0, -127.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../option_panel:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -56.0, -19.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../transition/credits:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "show_credits"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 9.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 3,
+"values": [ Color( 0, 0, 0, 0.52549 ), Color( 0, 0, 0, 0.52549 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("gui_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "hide", "show" ),
+"times": PoolRealArray( 0, 9.7 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../transition/credits:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 8.6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 50, 100.1 ), Vector2( 50, 75.1 ), Vector2( 50, 25.1 ), Vector2( 50, 0.1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../transition/credits:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 8.6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../transition/credits:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../transition:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../option_panel/buttons:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "intro"
+length = 10.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../outworld/boy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.2, 2.6, 3.9, 4.3, 5.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 754.901, 661.577 ), Vector2( 754.901, 374.5 ), Vector2( 754.901, 374.5 ), Vector2( 628.143, 374.5 ), Vector2( 628.143, 374.5 ), Vector2( 628.143, 269.267 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../outworld/boy:facing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.4, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../outworld/boy:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.2, 2.6, 3.9, 4.3, 5.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 1, 0, 1, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../outworld/boy:dialog")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("../outworld/sfx")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 6.3 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../outworld/narrator:dialog")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "BOY_KNOCK" ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../outworld/hearthsmith:dialog")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 7.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "COME_IN" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../outworld/boy:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/8/type = "animation"
+tracks/8/path = NodePath("transition_anim")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"clips": PoolStringArray( "transition_out" ),
+"times": PoolRealArray( 8.6 )
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../outworld:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 8, 9.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 64 ) ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 10.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_game_started"
+} ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../bgm:volume_db")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 8.6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "setup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../outworld/boy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 754.901, 661.577 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../outworld/narrator:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../outworld/hearthsmith:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 923.935, 677.217 ) ]
+}
+
+[node name="main_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scene_path" type="Node" parent="."]
+script = ExtResource( 5 )
+english_button = NodePath("../option_panel/languages/english")
+spanish_button = NodePath("../option_panel/languages/spanish")
+
+[node name="outworld" parent="." instance=ExtResource( 7 )]
+
+[node name="boy" parent="outworld" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 628.143, 269.267 )
+scale = Vector2( 2, 2 )
+
+[node name="narrator" parent="outworld" instance=ExtResource( 10 )]
+dialog = "BOY_KNOCK"
+
+[node name="hearthsmith" parent="outworld" instance=ExtResource( 12 )]
+position = Vector2( 923.935, 677.217 )
+dialog = "COME_IN"
+
+[node name="sfx" type="AudioStreamPlayer" parent="outworld"]
+stream = ExtResource( 11 )
+volume_db = 24.0
+
+[node name="option_panel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 126.0
+margin_top = -93.0
+margin_right = -127.0
+margin_bottom = -19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons" type="HBoxContainer" parent="option_panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="play" type="Button" parent="option_panel/buttons"]
+margin_right = 254.0
+margin_bottom = 74.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.760784, 0.760784, 0.760784, 1 )
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
+text = "PLAY"
+flat = true
+script = ExtResource( 2 )
+
+[node name="language" type="Button" parent="option_panel/buttons"]
+margin_left = 258.0
+margin_right = 512.0
+margin_bottom = 74.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.760784, 0.760784, 0.760784, 1 )
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
+text = "LANGUAGE"
+flat = true
+script = ExtResource( 2 )
+
+[node name="credits" type="Button" parent="option_panel/buttons"]
+margin_left = 516.0
+margin_right = 771.0
+margin_bottom = 74.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.760784, 0.760784, 0.760784, 1 )
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
+text = "CREDITS"
+flat = true
+script = ExtResource( 2 )
+
+[node name="languages" type="HBoxContainer" parent="option_panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="english" type="Button" parent="option_panel/languages"]
+margin_right = 99.0
+margin_bottom = 40.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.760784, 0.760784, 0.760784, 1 )
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
+text = "ENGLISH"
+flat = true
+script = ExtResource( 2 )
+
+[node name="spanish" type="Button" parent="option_panel/languages"]
+margin_left = 103.0
+margin_right = 241.0
+margin_bottom = 40.0
+size_flags_horizontal = 7
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.760784, 0.760784, 0.760784, 1 )
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.992157, 1, 0.203922, 1 )
+text = "SPANISH"
+flat = true
+script = ExtResource( 2 )
+
+[node name="transition" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="credits" type="Label" parent="transition"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 25.0
+margin_right = -50.0
+margin_bottom = -75.0005
+custom_fonts/font = ExtResource( 6 )
+text = "Programmer and Game Design:
+Mariano Suligoy
+
+Additions from OpenGameArt.org:
+\"medieval tileset interior\" (CC-BY 3.0) by Calciumtrice
+\"medieval tileset exterior\" (CC-BY 3.0) by Calciumtrice
+\"Hidden Oasis\" song (CC-BY 3.0) by Trevor Lentz
+
+Fonts:
+Fipps (freeware)
+Coder's Crux (free for non-profit)"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "setup"
+anims/setup = SubResource( 3 )
+anims/start_game = SubResource( 4 )
+
+[node name="gui_anim" type="AnimationPlayer" parent="anim"]
+autoplay = "setup"
+anims/hide = SubResource( 5 )
+anims/setup = SubResource( 6 )
+anims/show = SubResource( 7 )
+
+[node name="transition_anim" type="AnimationPlayer" parent="anim"]
+autoplay = "setup"
+anims/setup = SubResource( 8 )
+anims/show_credits = SubResource( 9 )
+anims/transition_in = SubResource( 10 )
+anims/transition_out = SubResource( 11 )
+
+[node name="cutscene_anim" type="AnimationPlayer" parent="anim"]
+autoplay = "setup"
+anims/intro = SubResource( 12 )
+anims/setup = SubResource( 13 )
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 8 )
+autoplay = true
+[connection signal="pressed" from="option_panel/buttons/play" to="anim" method="play" binds= [ "start_game" ]]
+[connection signal="visibility_changed" from="option_panel/buttons/play" to="option_panel/buttons/play" method="grab_focus" flags=3]
+[connection signal="pressed" from="option_panel/buttons/language" to="option_panel/buttons" method="hide"]
+[connection signal="pressed" from="option_panel/buttons/language" to="option_panel/languages" method="show" flags=3]
+[connection signal="pressed" from="option_panel/buttons/credits" to="anim/transition_anim" method="play" binds= [ "show_credits" ]]
+[connection signal="visibility_changed" from="option_panel/languages" to="." method="_on_languages_visibility_changed" flags=3]
+[connection signal="pressed" from="option_panel/languages/english" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="option_panel/languages/english" to="option_panel/buttons" method="show" flags=3]
+[connection signal="pressed" from="option_panel/languages/english" to="option_panel/languages" method="hide"]
+[connection signal="visibility_changed" from="option_panel/languages/english" to="option_panel/languages/english" method="grab_focus"]
+[connection signal="pressed" from="option_panel/languages/spanish" to="." method="_on_spanish_pressed"]
+[connection signal="pressed" from="option_panel/languages/spanish" to="option_panel/buttons" method="show" flags=3]
+[connection signal="pressed" from="option_panel/languages/spanish" to="option_panel/languages" method="hide"]

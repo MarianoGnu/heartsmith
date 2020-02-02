@@ -1,0 +1,121 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://ui/controls/icon_button.gd" type="Script" id=1]
+[ext_resource path="res://ui/theme/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui/icons/repair-disabled.png" type="Texture" id=3]
+[ext_resource path="res://ui/icons/repair-focus.png" type="Texture" id=4]
+[ext_resource path="res://ui/icons/repair-unfocus.png" type="Texture" id=5]
+[ext_resource path="res://ui/icons/dummy.png" type="Texture" id=6]
+[ext_resource path="res://ui/icons/item-unfocus.png" type="Texture" id=7]
+[ext_resource path="res://ui/icons/item-focus.png" type="Texture" id=8]
+[ext_resource path="res://ui/icons/item-disabled.png" type="Texture" id=9]
+[ext_resource path="res://ui/icons/act-focus.png" type="Texture" id=10]
+[ext_resource path="res://ui/icons/act-unfocus.png" type="Texture" id=11]
+[ext_resource path="res://ui/icons/act-disabled.png" type="Texture" id=12]
+[ext_resource path="res://ui/icons/mercy-focus.png" type="Texture" id=13]
+[ext_resource path="res://ui/icons/mercy-disabled.png" type="Texture" id=14]
+[ext_resource path="res://ui/icons/mercy-unfocus.png" type="Texture" id=15]
+
+[node name="battle" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="field" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -379.0
+margin_top = -273.0
+margin_right = 379.0
+margin_bottom = -83.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="actions" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_top = -66.0
+margin_right = -3.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="repair" type="Button" parent="actions"]
+margin_left = 36.0
+margin_right = 216.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+text = "REPAIR"
+icon = ExtResource( 6 )
+align = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+unfocus_icon = ExtResource( 5 )
+focus_icon = ExtResource( 4 )
+disabled_icon = ExtResource( 3 )
+
+[node name="act" type="Button" parent="actions"]
+margin_left = 293.0
+margin_right = 473.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+text = "ACT"
+icon = ExtResource( 6 )
+align = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+unfocus_icon = ExtResource( 11 )
+focus_icon = ExtResource( 10 )
+disabled_icon = ExtResource( 12 )
+
+[node name="item" type="Button" parent="actions"]
+margin_left = 550.0
+margin_right = 730.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+text = "ITEM"
+icon = ExtResource( 6 )
+align = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+unfocus_icon = ExtResource( 7 )
+focus_icon = ExtResource( 8 )
+disabled_icon = ExtResource( 9 )
+
+[node name="mercy" type="Button" parent="actions"]
+margin_left = 807.0
+margin_right = 987.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 180, 0 )
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 0.8, 0.32549, 0.0941176, 1 )
+text = "MERCY"
+icon = ExtResource( 6 )
+align = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+unfocus_icon = ExtResource( 15 )
+focus_icon = ExtResource( 13 )
+disabled_icon = ExtResource( 14 )
+[connection signal="visibility_changed" from="actions/repair" to="actions/repair" method="grab_focus"]

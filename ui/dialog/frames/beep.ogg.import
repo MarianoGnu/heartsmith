@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/beep.ogg-82e680f7958f7d3c72c9c751eae48549.oggstr"
+
+[deps]
+
+source_file="res://ui/dialog/frames/beep.ogg"
+dest_files=[ "res://.import/beep.ogg-82e680f7958f7d3c72c9c751eae48549.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

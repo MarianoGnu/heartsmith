@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://ui/dialog/characters/portrait_set.gd" type="Script" id=1]
+[ext_resource path="res://ui/dialog/characters/portraits/sadsmith/sadsmith-1.png" type="Texture" id=2]
+[ext_resource path="res://ui/dialog/characters/portraits/sadsmith/sadsmith-idle.png" type="Texture" id=3]
+[ext_resource path="res://ui/dialog/characters/portraits/sadsmith/sadsmith-2.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+idle = ExtResource( 3 )
+frame1 = ExtResource( 2 )
+frame2 = ExtResource( 4 )
+voice_pitch = 0.9

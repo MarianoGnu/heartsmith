@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/knock.ogg-9d678d5978769fe49db98004860fcb62.oggstr"
+
+[deps]
+
+source_file="res://scenes/world/outworld/knock.ogg"
+dest_files=[ "res://.import/knock.ogg-9d678d5978769fe49db98004860fcb62.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

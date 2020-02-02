@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://translation/cabin.en.translation", "res://translation/cabin.es.translation" ]
+
+source_file="res://translation/cabin.csv"
+dest_files=[ "res://translation/cabin.en.translation", "res://translation/cabin.es.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

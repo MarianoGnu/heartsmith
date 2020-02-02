@@ -1,0 +1,8 @@
+[gd_resource type="ProxyTexture" load_steps=2 format=2]
+
+[ext_resource path="res://ui/dialog/characters/portraits/hearthsmith/heartsmit-2.png" type="Texture" id=1]
+
+
+
+[resource]
+base = ExtResource( 1 )
